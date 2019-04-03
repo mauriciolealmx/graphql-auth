@@ -13,14 +13,18 @@ class LoginForm extends Component {
     };
   }
 
+  componentWillUpdate(nextProps) {
+    // The user was not logged in but now is.
+    if (!this.props.data.user && nextProps.data.user) {
+      hashHistory.push('/dashboard');
+    }
+  }
+
   onSubmit({ email, password }) {
     this.props
       .mutate({
         variables: { email, password },
         refetchQueries: [{ query }]
-      })
-      .then(() => {
-        hashHistory.push('/');
       })
       .catch(res => {
         const errors = res.graphQLErrors.map(error => error.message);
@@ -41,4 +45,4 @@ class LoginForm extends Component {
   }
 }
 
-export default graphql(LoginMutation)(LoginForm);
+export default graphql(query)(graphql(LoginMutation)(LoginForm));
