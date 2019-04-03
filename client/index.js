@@ -8,7 +8,7 @@ import App from './components/App';
 import Login from './components/LoginForm';
 import Signup from './components/SignupForm';
 import Dashboard from './components/Dashboard';
-import requireAuth from './components/hocs/requireAuth'
+import requireAuth from './components/hocs/requireAuth';
 
 const client = new ApolloClient({
   // Uniquely identify every record that we fetch.
