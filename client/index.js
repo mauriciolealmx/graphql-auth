@@ -6,7 +6,9 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 
 import App from './components/App';
 import Login from './components/LoginForm';
-import Signup from './components/Signup';
+import Signup from './components/SignupForm';
+import Dashboard from './components/Dashboard';
+import requireAuth from './components/hocs/requireAuth'
 
 const client = new ApolloClient({
   // Uniquely identify every record that we fetch.
@@ -20,6 +22,7 @@ const Root = () => {
         <Route path="/" component={App}>
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
+          <Route path="/dashboard" component={requireAuth(Dashboard)} />
         </Route>
       </Router>
     </ApolloProvider>
